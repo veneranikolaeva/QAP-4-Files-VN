@@ -1,0 +1,58 @@
+// Object definition for Motel customer 
+const customer = { 
+    name: "John Doe", 
+    birthDate: "1990-01-01", 
+    gender: "Male", 
+    roomPreferences: ["Single", "Non-smoking"], 
+    paymentMethod: "Credit Card", 
+    mailingAddress: { 
+        street: "123 Main St", 
+        city: "Cityville", 
+        state: "State", 
+        zipCode: "12345" }, 
+        phoneNumber: "123-456-7890", 
+        checkInDate: { 
+            day: 1, 
+            month: "January", year: 2022 }, 
+        checkOutDate: { 
+            day: 7, 
+            month: "January", 
+            year: 2022 
+        }, 
+        getAge: function() { 
+            const today = new Date(); 
+            const birthDate = new Date(this.birthDate); 
+            let age = today.getFullYear() - birthDate.getFullYear(); 
+            const monthDiff = today.getMonth() - birthDate.getMonth(); 
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) { age--; 
+            } return age; 
+        }, 
+        getDurationOfStay: function() { 
+            const checkInDate = new 
+            Date(this.checkInDate.year, 
+                this.checkInDate.month, 
+                this.checkInDate.day); 
+                const checkOutDate = new 
+                Date(this.checkOutDate.year, 
+                    this.checkOutDate.month, 
+                    this.checkOutDate.day); 
+                    const duration = Math.abs(checkOutDate - checkInDate) / (1000 * 60 * 60 * 24); 
+                    return duration; 
+                } 
+            }; 
+            // Template literal string describing the customer 
+            const customerDescription = ` 
+            Name: ${customer.name} 
+            Age: ${customer.getAge()} 
+            Gender: ${customer.gender} 
+            Room Preferences: ${customer.roomPreferences.join(", ")} 
+            Payment Method: ${customer.paymentMethod} 
+            Mailing Address: ${customer.mailingAddress.street}, ${customer.mailingAddress.city}, ${customer.mailingAddress.state}, ${customer.mailingAddress.zipCode} 
+            Phone Number: ${customer.phoneNumber} 
+            Check-in Date: ${customer.checkInDate.month} ${customer.checkInDate.day}, ${customer.checkInDate.year} 
+            Check-out Date: ${customer.checkOutDate.month} ${customer.checkOutDate.day}, ${customer.checkOutDate.year} 
+            Duration of Stay: ${customer.getDurationOfStay()} days `
+            ; 
+            console.log(customerDescription); 
+            
+        
